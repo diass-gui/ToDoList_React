@@ -1,22 +1,27 @@
+import ConcluirTarefa from './ConcluirTarefa';
+import ExcluirTarefa from './ExcluirTarefa';
 import '../components/tarefas.css';
 import '../App.css'
 
 function Tarefas({ tasks }) {
 
     return (
-        <div className='w-1/3 bg-amber-50 rounded-xl border border-2'>
+        <div className='w-[650px] bg-amber-50 rounded-lg border border-2'>
 
         <h1 className='p-4 text-2xl'>Tarefas criadas</h1>
 
-        <ul className='space-y-2 max-h-[400px] overflow-auto px-4 mb-4'>
+        <ul className='space-y-2 min-h-[276px] max-h-full overflow-auto px-4 mb-4'>
         {tasks.map((task) => (
         <li key={task.id} className='flex gap-2'>
-        <div className='p-4 rounded-xl border h-22 w-105'>
+        <div className='p-4 rounded-xl border border-2 min-h-22 w-145'>
           <p>Tarefa: {task.titulo}</p>
           <p>Descrição: {task.descricao}</p>
+          <div className='flex gap-2'>
+            <ConcluirTarefa />
+            <ExcluirTarefa />
+          </div>
         </div>
-        {/* {console.log(task.id)} */}
-        {/* <button onClick={() => handleDeleteClick(task.id)} className='p-1.5 rounded-xl'>🗑</button> */}
+        {console.log(task.id)}
         </li>))}
       </ul>
         </div>

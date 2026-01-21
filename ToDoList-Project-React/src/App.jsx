@@ -1,13 +1,14 @@
 import Tarefas from './components/Tarefas'
 import AddTarefa from './components/AddTarefa';
+import TarefasConcluidas from './components/TarefasConcluidas';
 import { useState } from 'react'
 
 function App() {
 
-  const[tarefas, setTarefas] = useState([]);
+  const[tarefasAbertas, setTarefasAbertas] = useState([]);
 
   function handleAddTarefa(titulo, descricao) {
-    setTarefas((valorAtualdoState) => {
+    setTarefasAbertas((valorAtualdoState) => {
       return [
         ...valorAtualdoState, {
         id: Math.random(),
@@ -18,15 +19,22 @@ function App() {
     console.log("Deu certo")
   }
 
+  function handleDeletarTarefa(tarefasId) {
+    set
+  }
+
   return (
-    <div className='flex flex-col p-4 gap-5'>
-      <div className=''>
+    <div className='flex flex-row p-5 gap-5'>
+      <div>
         <AddTarefa handleAddTarefa={handleAddTarefa} />
       </div>
 
       <div className='w-full'>
-        <Tarefas tasks={tarefas} />
-        {/* {console.log(tarefas.map(tarefa => tarefa.titulo))} */}
+        <Tarefas tasks={tarefasAbertas} />
+      </div>
+
+      <div>
+        <TarefasConcluidas />
       </div>
       
     </div>
