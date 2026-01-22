@@ -6,28 +6,49 @@ import { useState } from 'react'
 function App() {
 
   const[tarefasAbertas, setTarefasAbertas] = useState([]);
+  const[tarefasConcluidas, setTarefasConcluidas] = useState([])
   let[acumuladorId, setAcumuladorId] = useState(0)
 
+  
   function handleAddTarefa(titulo, descricao) {
     setTarefasAbertas((valorAtualdoState) => {
       acumuladorId++;
       return [
         ...valorAtualdoState, {
-        id: acumuladorId,
-        titulo: titulo,
-        descricao: descricao
-      }]   
-  }
-)
+          id: acumuladorId,
+          titulo: titulo,
+          descricao: descricao,
+          completed: false
+        }]   
+      }
+    )
     setAcumuladorId(acumuladorId); 
     console.log("Deu certo")
   }
 
+  function handleFinalizarTarefa(taskId, completed) {
+    setTarefasConcluidas((tasks) => {
+      return valor 
+    })
+  }
+
+  // function handleFinalizarTarefa(tarefaId, tituloTarefa, descricaoTarefa) {
+  //       setTarefasConcluidas((valorAtualdoState) => {
+  //         return [
+  //           ...valorAtualdoState, {
+  //               id: tarefaId,
+  //               titulo: tituloTarefa,
+  //               descricao: descricaoTarefa
+  //           }
+  //         ]})
+  //         console.log("Tarefa finalizada")
+  //         console.log(tarefasConcluidas)
+  //   }
+  
   function handleDeletarTarefa(tarefasId) {
     setTarefasAbertas((valorAtualdoState) => {
       return valorAtualdoState.filter((task) => task.id != tarefasId)
     })
-    console.log(tasks.filter((task) => task.id != tarefasId))
   }
 
   return (
@@ -37,11 +58,11 @@ function App() {
       </div>
 
       <div>
-        <Tarefas tasks={tarefasAbertas} handleDeletarTarefa={handleDeletarTarefa} />
+        <Tarefas tasks={tarefasAbertas} handleDeletarTarefa={handleDeletarTarefa} handleFinalizarTarefa={handleFinalizarTarefa} />
       </div>
 
       <div>
-        <TarefasConcluidas />
+        <TarefasConcluidas tarefasConcluidas={tarefasConcluidas} />
       </div>
       
     </div>

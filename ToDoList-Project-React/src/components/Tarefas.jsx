@@ -1,20 +1,10 @@
-
+import ConcluirTarefa from './ConcluirTarefa';
+import ExcluirTarefa from './ExcluirTarefa';
 import { useState } from 'react'
 import '../components/tarefas.css';
 import '../App.css'
 
-function Tarefas({ tasks, handleDeletarTarefa }) {
-
-  function handleFinalizarTarefa(tarefaId, tituloTarefa, descricaoTarefa) {
-        setTarefasConcluidas((valorAtualdoState) => {
-          return [
-            ...valorAtualdoState, {
-                id: tarefaId,
-                titulo: tituloTarefa,
-                descricao: descricaoTarefa
-            }
-          ]})
-    }
+function Tarefas({ tasks, handleFinalizarTarefa }) {
 
     return (
         <div className='w-[650px] bg-amber-50 rounded-lg border border-2'>
@@ -27,15 +17,14 @@ function Tarefas({ tasks, handleDeletarTarefa }) {
             <p>Tarefa: {task.titulo}</p>
             <p>Descrição: {task.descricao}</p>
             <div className='flex gap-2'>
-              <button className='bg-green-300 p-2 rounded-lg mt-1.5 ml-80 hover:bg-green-500' onClick={() => handleFinalizarTarefa(task.id, task.titulo, task.descricao)}>Finalizar ✅</button>
-              <button className="bg-red-300 rounded-lg hover:bg-red-500 p-2 h-10 mt-1.5" onClick={() => handleDeletarTarefa(task.id, task.titulo, task.descricao)}>Excluir ❌</button>
+              <ConcluirTarefa handleFinalizarTarefa={handleFinalizarTarefa} taskId={task.id} tituloTask={task.titulo} descricaoTask={task.descricao} />
+              <ExcluirTarefa />
             </div>
           </div>
           </li>))}
           </ul>
         </div>
     )
-
 }
 
 export default Tarefas;
